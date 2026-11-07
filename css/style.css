@@ -1,0 +1,77 @@
+/* style.css - tokens, base, layout, animation. Page-specific styles live in index.html <head>. */
+@import url("../fonts/fonts.css"); /* written by scripts/fetch_fonts.py */
+
+:root {
+  --brand: #e36b3d;
+  --accent: #faaf7f;
+  --dark: #160504;
+  --text: #1a1a1a;
+  --text-light: #4a4a4a;
+  --text-muted: #6b6b6b;
+  --bg: #ffffff;
+  --bg-alt: #f4f2f0;   /* gotcha 5: visible against white */
+  --font-heading: "Ogg Roman", Georgia, serif;
+  --font-body: "Gotham Book", system-ui, -apple-system, sans-serif;
+  --container: 1200px;
+  --radius: 10px;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); color: var(--text); background: var(--bg); line-height: 1.6; }
+img { object-fit: cover; }
+
+/* Typography - gotcha 1: headings carry their own bottom margin */
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.15; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 1.25rem; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); margin-bottom: 1rem; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-bottom: 0.75rem; }
+p { max-width: 640px; margin-bottom: 1rem; }
+p:last-child { margin-bottom: 0; }
+.label { display: block; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); margin-bottom: 0.75rem; } /* gotcha 2 */
+
+/* Layout */
+.container { width: min(var(--container), 100% - 2.5rem); margin-inline: auto; }
+.container--narrow { width: min(800px, 100% - 2.5rem); margin-inline: auto; }
+section { padding: 7rem 0; }
+.section--alt { background: var(--bg-alt); }
+.section--dark { background: var(--dark); color: #fff; }
+.section--centred .label, .section--centred h2 { text-align: center; max-width: none; } /* gotchas 3 + 6 */
+.section__intro { max-width: 720px; margin-left: auto; margin-right: auto; text-align: center; font-size: 1.05rem; color: var(--text-light); margin-bottom: 2.5rem !important; } /* gotcha 4 */
+.section__sub { max-width: 640px; margin: 0 auto; text-align: center; font-size: 1.1rem; color: var(--text-light); margin-bottom: 1rem !important; } /* gotcha 7 */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.card { background: #fff; border: 1px solid #e6e2de; border-radius: var(--radius); padding: 2rem; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: .5rem; padding: .95rem 1.8rem; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; text-decoration: none; transition: transform .2s ease, background .2s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn--accent { background: var(--accent); color: var(--dark); }
+
+/* Nav */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: .6rem 0; transition: background .3s ease, box-shadow .3s ease; }
+.nav--scrolled { background: rgba(255,255,255,.96); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+.nav__inner { display: flex; align-items: center; justify-content: space-between; }
+.nav__logo img { height: 36px; width: auto; }
+
+/* Animation */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+.stagger > *:nth-child(2) { transition-delay: .1s; }
+.stagger > *:nth-child(3) { transition-delay: .2s; }
+.stagger > *:nth-child(4) { transition-delay: .3s; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  section { padding: 5rem 0; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 2.5rem; }
+  .grid-2 > .grid__image { order: -1; }
+}
+@media (max-width: 600px) {
+  section { padding: 3.5rem 0; }
+  h2 { font-size: 1.5rem; }
+  .btn { width: 100%; justify-content: center; font-size: .85rem; padding: .75rem 1.4rem; }
+  .card { padding: 1.5rem; }
+  .nav__logo img { height: 28px; }
+  .grid-2, .grid-3 { gap: 2rem; }
+}
