@@ -44,6 +44,9 @@ Ogg Roman and Gotham Book, Medium and Light are self hosted in `fonts/` (woff2 c
 - Scanner test on the H2s: a reader of headings alone gets product, price, proof, offer and action.
 - Honest admission under the price card; the "not for you" list carries the pregnancy and adults only compliance.
 
+## Live
+https://travistelfer-hub.github.io/sol-bathhouse-membership/ (7 Nov 2026). Repo TravisTelfer-hub/sol-bathhouse-membership, public, Pages serves `main` at root; this folder is the git working tree. Unused images are gitignored (see `.gitignore`); `.nojekyll` present. Redeploy: commit and push on `main`, then run the pages-publish verify gate. The page carries `noindex`. Not password protected; add StatiCrypt via the encryption-setup skill if the client wants it private.
+
 ## Next steps
 1. Travis or the client confirms the eight assumptions and the form handler.
 2. Prune `images/` to the files the page uses (or keep for A/B variants), then publish (pages-publish skill) or hand to Webflow.
